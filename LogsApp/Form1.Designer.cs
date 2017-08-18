@@ -54,7 +54,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(348, 56);
+            this.button1.Location = new System.Drawing.Point(446, 56);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 39);
             this.button1.TabIndex = 0;
@@ -78,7 +78,7 @@
             "Misc"});
             this.comboBox1.Location = new System.Drawing.Point(12, 12);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(251, 24);
+            this.comboBox1.Size = new System.Drawing.Size(359, 26);
             this.comboBox1.TabIndex = 1;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -89,26 +89,26 @@
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(12, 51);
             this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(251, 24);
+            this.comboBox2.Size = new System.Drawing.Size(359, 26);
             this.comboBox2.TabIndex = 2;
             this.comboBox2.Visible = false;
             // 
             // txtMins
             // 
             this.txtMins.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMins.Location = new System.Drawing.Point(348, 12);
+            this.txtMins.Location = new System.Drawing.Point(446, 12);
             this.txtMins.Name = "txtMins";
-            this.txtMins.Size = new System.Drawing.Size(100, 38);
+            this.txtMins.Size = new System.Drawing.Size(100, 41);
             this.txtMins.TabIndex = 3;
             this.txtMins.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtComments
             // 
-            this.txtComments.Location = new System.Drawing.Point(12, 118);
+            this.txtComments.Location = new System.Drawing.Point(15, 119);
             this.txtComments.Multiline = true;
             this.txtComments.Name = "txtComments";
             this.txtComments.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtComments.Size = new System.Drawing.Size(251, 44);
+            this.txtComments.Size = new System.Drawing.Size(346, 82);
             this.txtComments.TabIndex = 5;
             // 
             // label1
@@ -116,25 +116,26 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 101);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
+            this.label1.Size = new System.Drawing.Size(67, 15);
             this.label1.TabIndex = 6;
             this.label1.Text = "Comments";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 23);
+            this.label2.Location = new System.Drawing.Point(382, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(58, 13);
+            this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 7;
             this.label2.Text = "No of Mins";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.113208F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(7, 42);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 13);
+            this.label3.Size = new System.Drawing.Size(87, 13);
             this.label3.TabIndex = 8;
             this.label3.Text = "Total Minutes for:";
             // 
@@ -175,7 +176,7 @@
             // 
             // btnTimer
             // 
-            this.btnTimer.Location = new System.Drawing.Point(453, 21);
+            this.btnTimer.Location = new System.Drawing.Point(551, 21);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Size = new System.Drawing.Size(78, 24);
             this.btnTimer.TabIndex = 12;
@@ -207,7 +208,7 @@
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.lblTotalMinutes);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(269, 95);
+            this.groupBox1.Location = new System.Drawing.Point(367, 95);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(271, 108);
             this.groupBox1.TabIndex = 14;
@@ -216,19 +217,19 @@
             // 
             // lblPercentage
             // 
-            this.lblPercentage.AutoSize = true;
             this.lblPercentage.BackColor = System.Drawing.Color.Transparent;
-            this.lblPercentage.Location = new System.Drawing.Point(94, 90);
+            this.lblPercentage.Location = new System.Drawing.Point(5, 88);
             this.lblPercentage.Name = "lblPercentage";
-            this.lblPercentage.Size = new System.Drawing.Size(0, 13);
+            this.lblPercentage.Size = new System.Drawing.Size(261, 17);
             this.lblPercentage.TabIndex = 16;
+            this.lblPercentage.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // rdoCurrentUser
             // 
             this.rdoCurrentUser.AutoSize = true;
             this.rdoCurrentUser.Location = new System.Drawing.Point(78, 17);
             this.rdoCurrentUser.Name = "rdoCurrentUser";
-            this.rdoCurrentUser.Size = new System.Drawing.Size(85, 17);
+            this.rdoCurrentUser.Size = new System.Drawing.Size(96, 19);
             this.rdoCurrentUser.TabIndex = 15;
             this.rdoCurrentUser.Text = "radioButton2";
             this.rdoCurrentUser.UseVisualStyleBackColor = true;
@@ -249,7 +250,7 @@
             this.rdoAll.Checked = true;
             this.rdoAll.Location = new System.Drawing.Point(10, 17);
             this.rdoAll.Name = "rdoAll";
-            this.rdoAll.Size = new System.Drawing.Size(54, 17);
+            this.rdoAll.Size = new System.Drawing.Size(60, 19);
             this.rdoAll.TabIndex = 14;
             this.rdoAll.TabStop = true;
             this.rdoAll.Text = "For All";
@@ -260,22 +261,22 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 212);
+            this.ClientSize = new System.Drawing.Size(643, 212);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnTimer);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtComments);
             this.Controls.Add(this.txtMins);
             this.Controls.Add(this.comboBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.button1);
+            this.Controls.Add(this.label2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Logs";
+            this.Text = "Logs v2017.08.18";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDoubleClick);
             this.groupBox1.ResumeLayout(false);

@@ -94,6 +94,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ahs.ico" />
+    <Content Include="bin\Debug\EPPlus.dll" />
+    <Content Include="bin\Debug\logs.mdb">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

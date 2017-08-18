@@ -197,7 +197,7 @@ namespace WindowsFormsApplication1
                     myConnection.Open();
 
                     OdbcCommand myCommand = myConnection.CreateCommand();
-                    myCommand.CommandText = "SELECT Sub_Category from SUB_CATEGORY_DROPDOWN WHERE Category = '" + _category + "' ORDER BY ID";
+                    myCommand.CommandText = "SELECT Sub_Category from SUB_CATEGORY_DROPDOWN WHERE Category = '" + _category + "' ORDER BY Sub_Category";
                     OdbcDataReader myReader;
                     myReader = myCommand.ExecuteReader();
                     if (myReader.HasRows)
@@ -249,7 +249,7 @@ namespace WindowsFormsApplication1
                     myConnection.Open();
 
                     OdbcCommand myCommand = myConnection.CreateCommand();
-                    myCommand.CommandText = "SELECT Category from CATEGORY_DROPDOWN ORDER BY ID";
+                    myCommand.CommandText = "SELECT Category from CATEGORY_DROPDOWN ORDER BY Category";
                     OdbcDataReader myReader;
                     myReader = myCommand.ExecuteReader();
                     if (myReader.HasRows)
