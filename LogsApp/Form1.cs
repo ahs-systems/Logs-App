@@ -19,6 +19,7 @@ namespace WindowsFormsApplication1
         Stopwatch stopWatch = new Stopwatch();
         TimeSpan ts;
         bool toggleStopWatch;
+        string ConnStr;
 
         public Form1()
         {
@@ -53,40 +54,57 @@ namespace WindowsFormsApplication1
                     return;
                 }
 
-                using (OdbcConnection myConnection = new OdbcConnection())
+                string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                string category = comboBox1.SelectedIndex == -1 ? "" : comboBox1.SelectedItem.ToString();
+                string subCategory = comboBox2.SelectedIndex == -1 ? "" : comboBox2.SelectedItem.ToString();
+                string sqlStr = "Insert into logs (user, dateSaved, category, sub_category, comments, minutes) values ('" + userName + "', #" + dpSaveDate.Value.ToString("yyyy-MM-dd") +
+                    "#, '" + category + "', '" + subCategory + "', '" + Regex.Replace(txtComments.Text.Trim(), "[][\"'-]", "`") +
+                    "', " + txtMins.Text.Trim() + ")";
+
+                if (dpSaveDate.Value != DateTime.Today)
                 {
-                    //myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\rsss_systems\Operations - RSSS Systems Group\Automated Files\logs.mdb;Uid=Admin;Pwd=;";
-                    myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
-                    myConnection.Open();
+                    DialogResult _res = MessageBox.Show("Log will be saved on a different date which is " + dpSaveDate.Value.ToString("(dddd) dd MMM yyyy") + ".\n\nDo you want to continue?" , "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (_res == DialogResult.No)
+                    {
+                        return;
+                    }
+                }
 
-                    OdbcCommand myCommand = myConnection.CreateCommand();
-
-                    string userName = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-                    string category = comboBox1.SelectedIndex == -1 ? "" : comboBox1.SelectedItem.ToString();
-                    string subCategory = comboBox2.SelectedIndex == -1 ? "" : comboBox2.SelectedItem.ToString();
-                    myCommand.CommandText = "Insert into logs (user, category, sub_category, comments, minutes) values ('" + userName +
-                        "', '" + category + "', '" + subCategory + "', '" + Regex.Replace(txtComments.Text.Trim(), "[][\"'-]","`") +
-                        "', " + txtMins.Text.Trim() + ")";
-
-                    SaveIt(myCommand.CommandText);
-
-                    myCommand.ExecuteNonQuery();
-
-                    //myCommand.CommandText = "SELECT SUM(MINUTES) AS TOTAL FROM LOGS where  FORMAT(now(),'mm-dd-yyyy') = FORMAT(DATESAVED,'mm-dd-yyyy')";
-
-                    //OdbcDataReader myReader;
-                    //myReader = myCommand.ExecuteReader();
-                    //myReader.Read();
-
-                    //lblTotalMinutes.Text = myReader["TOTAL"].ToString();
-                    //myReader.Close();
-
-                    MessageBox.Show("Successfully Saved!", "Confirmation");                    
+                if (SaveIt(sqlStr))
+                {
+                    MessageBox.Show("Successfully Saved!", "Confirmation");
                     txtComments.Text = txtMins.Text = "";
-
                     dateTimePicker1.Value = DateTime.Today;
                     GetTotalMinutes(dateTimePicker1.Value.ToString("MM-dd-yyyy"));
                 }
+                else
+                {
+                    MessageBox.Show("Error in saving the log.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //using (OdbcConnection myConnection = new OdbcConnection())
+                //{
+                //    //myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\rsss_systems\Operations - RSSS Systems Group\Automated Files\logs.mdb;Uid=Admin;Pwd=;";
+                //    //myConnection.ConnectionString = ConnStr;
+                //    //myConnection.Open();
+
+                //    //OdbcCommand myCommand = myConnection.CreateCommand();
+
+                    
+
+                //    //myCommand.ExecuteNonQuery();
+
+                //    //myCommand.CommandText = "SELECT SUM(MINUTES) AS TOTAL FROM LOGS where  FORMAT(now(),'mm-dd-yyyy') = FORMAT(DATESAVED,'mm-dd-yyyy')";
+
+                //    //OdbcDataReader myReader;
+                //    //myReader = myCommand.ExecuteReader();
+                //    //myReader.Read();
+
+                //    //lblTotalMinutes.Text = myReader["TOTAL"].ToString();
+                //    //myReader.Close();
+
+                    
+                //}
             }
             catch (Exception ex)
             {
@@ -94,26 +112,28 @@ namespace WindowsFormsApplication1
             }
         }
 
-        private void SaveIt(string _sqlCommand)
+        private bool SaveIt(string _sqlCommand)
         {
             try
             {
                 using (OdbcConnection myConnection = new OdbcConnection())
                 {
                     //myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\rsss_systems\Operations - RSSS Systems Group\Automated Files\logs.mdb;Uid=Admin;Pwd=;";
-                    myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\regionalstaf\Operations - RSSS Systems Group\WorkstationInstall\logs.dat;Uid=Admin;Pwd=;";
+                    myConnection.ConnectionString = ConnStr;
                     myConnection.Open();
 
                     OdbcCommand myCommand = myConnection.CreateCommand();
 
                     myCommand.CommandText = _sqlCommand;
                     myCommand.ExecuteNonQuery();
-                    myCommand.Dispose();
+                    myCommand.Dispose();                    
                 }
+
+                return true;
             }
             catch
             {
-                
+                return false;
             }
         }
 
@@ -125,7 +145,7 @@ namespace WindowsFormsApplication1
                 {                   
 
                     //myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\rsss_systems\Operations - RSSS Systems Group\Automated Files\logs.mdb;Uid=Admin;Pwd=;";
-                    myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
+                    myConnection.ConnectionString = ConnStr;
                     myConnection.Open();
 
                     OdbcCommand myCommand = myConnection.CreateCommand();
@@ -193,7 +213,7 @@ namespace WindowsFormsApplication1
                 using (OdbcConnection myConnection = new OdbcConnection())
                 {
                     //myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\rsss_systems\Operations - RSSS Systems Group\Automated Files\logs.mdb;Uid=Admin;Pwd=;";
-                    myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
+                    myConnection.ConnectionString = ConnStr;
                     myConnection.Open();
 
                     OdbcCommand myCommand = myConnection.CreateCommand();
@@ -225,9 +245,11 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            ConnStr = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
+
             Text = Text + ":  Current User[" + System.Security.Principal.WindowsIdentity.GetCurrent().Name + "]";
             rdoCurrentUser.Text = "For \"" + System.Security.Principal.WindowsIdentity.GetCurrent().Name + "\"";
-            dateTimePicker1.Value = DateTime.Today;
+            dpSaveDate.Value = dateTimePicker1.Value = DateTime.Today;
 
             LoadCategory();
 
@@ -245,7 +267,7 @@ namespace WindowsFormsApplication1
                 using (OdbcConnection myConnection = new OdbcConnection())
                 {
                     //myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\rsss_systems\Operations - RSSS Systems Group\Automated Files\logs.mdb;Uid=Admin;Pwd=;";
-                    myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
+                    myConnection.ConnectionString = ConnStr;
                     myConnection.Open();
 
                     OdbcCommand myCommand = myConnection.CreateCommand();
@@ -288,7 +310,7 @@ namespace WindowsFormsApplication1
             using (OdbcConnection myConnection = new OdbcConnection())
             {
                 //myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\jeeves.crha-health.ab.ca\rsss_systems\Operations - RSSS Systems Group\Automated Files\logs.mdb;Uid=Admin;Pwd=;";
-                myConnection.ConnectionString = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
+                myConnection.ConnectionString = ConnStr;
                 myConnection.Open();
 
                 OdbcCommand myCommand = myConnection.CreateCommand();

@@ -49,12 +49,13 @@
             this.rdoCurrentUser = new System.Windows.Forms.RadioButton();
             this.pbCurrentUser = new System.Windows.Forms.ProgressBar();
             this.rdoAll = new System.Windows.Forms.RadioButton();
+            this.dpSaveDate = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(446, 56);
+            this.button1.Location = new System.Drawing.Point(449, 83);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 39);
             this.button1.TabIndex = 0;
@@ -96,7 +97,7 @@
             // txtMins
             // 
             this.txtMins.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMins.Location = new System.Drawing.Point(446, 12);
+            this.txtMins.Location = new System.Drawing.Point(449, 39);
             this.txtMins.Name = "txtMins";
             this.txtMins.Size = new System.Drawing.Size(100, 41);
             this.txtMins.TabIndex = 3;
@@ -123,7 +124,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(382, 23);
+            this.label2.Location = new System.Drawing.Point(385, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(66, 15);
             this.label2.TabIndex = 7;
@@ -176,7 +177,7 @@
             // 
             // btnTimer
             // 
-            this.btnTimer.Location = new System.Drawing.Point(551, 21);
+            this.btnTimer.Location = new System.Drawing.Point(554, 48);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Size = new System.Drawing.Size(78, 24);
             this.btnTimer.TabIndex = 12;
@@ -208,7 +209,7 @@
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Controls.Add(this.lblTotalMinutes);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(367, 95);
+            this.groupBox1.Location = new System.Drawing.Point(370, 122);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(271, 108);
             this.groupBox1.TabIndex = 14;
@@ -229,7 +230,7 @@
             this.rdoCurrentUser.AutoSize = true;
             this.rdoCurrentUser.Location = new System.Drawing.Point(78, 17);
             this.rdoCurrentUser.Name = "rdoCurrentUser";
-            this.rdoCurrentUser.Size = new System.Drawing.Size(96, 19);
+            this.rdoCurrentUser.Size = new System.Drawing.Size(95, 19);
             this.rdoCurrentUser.TabIndex = 15;
             this.rdoCurrentUser.Text = "radioButton2";
             this.rdoCurrentUser.UseVisualStyleBackColor = true;
@@ -250,18 +251,26 @@
             this.rdoAll.Checked = true;
             this.rdoAll.Location = new System.Drawing.Point(10, 17);
             this.rdoAll.Name = "rdoAll";
-            this.rdoAll.Size = new System.Drawing.Size(60, 19);
+            this.rdoAll.Size = new System.Drawing.Size(59, 19);
             this.rdoAll.TabIndex = 14;
             this.rdoAll.TabStop = true;
             this.rdoAll.Text = "For All";
             this.rdoAll.UseVisualStyleBackColor = true;
             this.rdoAll.CheckedChanged += new System.EventHandler(this.rdoAll_CheckedChanged);
             // 
+            // dpSaveDate
+            // 
+            this.dpSaveDate.Location = new System.Drawing.Point(380, 12);
+            this.dpSaveDate.Name = "dpSaveDate";
+            this.dpSaveDate.Size = new System.Drawing.Size(254, 20);
+            this.dpSaveDate.TabIndex = 15;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(643, 212);
+            this.ClientSize = new System.Drawing.Size(649, 242);
+            this.Controls.Add(this.dpSaveDate);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.label1);
@@ -276,7 +285,7 @@
             this.MaximizeBox = false;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Logs v2017.08.18";
+            this.Text = "Logs v2017.10.20";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDoubleClick);
             this.groupBox1.ResumeLayout(false);
@@ -307,6 +316,7 @@
         private System.Windows.Forms.RadioButton rdoAll;
         private System.Windows.Forms.Label lblPercentage;
         private System.Windows.Forms.ProgressBar pbCurrentUser;
+        private System.Windows.Forms.DateTimePicker dpSaveDate;
     }
 }
 
