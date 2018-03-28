@@ -245,7 +245,10 @@ namespace WindowsFormsApplication1
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            ConnStr = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
+            //ConnStr = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=" + Application.StartupPath + @"\logs.mdb;Uid=Admin;Pwd=;";
+
+            // for trainers
+            ConnStr = @"Driver={Microsoft Access Driver (*.mdb, *.accdb)};Dbq=\\healthy.bewell.ca\groups\AHS_ProvincialStaffingServices\PSS\Training\Logs Installer\logs.mdb;Uid=Admin;Pwd=;";
 
             Text = Text + ":  Current User[" + System.Security.Principal.WindowsIdentity.GetCurrent().Name + "]";
             rdoCurrentUser.Text = "For \"" + System.Security.Principal.WindowsIdentity.GetCurrent().Name + "\"";
